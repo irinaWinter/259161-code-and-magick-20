@@ -4,14 +4,14 @@ var setupOpen = document.querySelector('.setup-open');
 var setup = document.querySelector('.setup');
 var setupClose = setup.querySelector('.setup-close');
 
-var onPopupEscPress = funciton (evt) {
+var onPopupEscPress = function (evt) {
   if (evt.key === 'Escape') {
     evt.preventDefault();
     closePopup();
   }
-}
+};
 
-var openPopup = funciton () {
+var openPopup = function () {
   setup.classList.remove('hidden');
 
   document.addEventListener('keydown', onPopupEscPress);
@@ -29,7 +29,7 @@ setupOpen.addEventListener('click', function () {
 
 setupOpen.addEventListener('keydown', function (evt) {
   if (evt.key === 'Enter') {
-    openPopup
+    openPopup();
   }
 });
 

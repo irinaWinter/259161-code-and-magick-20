@@ -71,17 +71,18 @@
   <form class="setup-wizard-form"
         method="post"
         enctype="multipart/form-data"
+        action="https://javascript.pages.academy/code-and-magick"
         autocomplete="off">
 
     <div class="setup-title">
       <div class="setup-user">
         <div class="upload">
           <img class="setup-user-pic" src="./img/user-1.jpg"/>
-          <input type="file" name="avatar">
+          <input type="file" name="avatar" accept="image/png, image/jpeg">
         </div>
         <label>
           <input type="text" name="username"
-                 maxlength="25" required
+                 minlength="2" maxlength="25" required
                  class="setup-user-name" value="Синий Пендальф"/>
         </label>
       </div>
@@ -208,6 +209,7 @@
     return gameFieldHeight / 3;
   }
 </script>
+<script src="js/validation.js"></script>
 <script src="js/modal.js"></script>
 <script src="js/stat.js"></script>
 <script src="js/setup.js"></script>
