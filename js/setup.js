@@ -64,19 +64,29 @@ userDialog.querySelector('.setup-similar').classList.remove('hidden');
 
 var userWizard = document.querySelector('.setup-wizard');
 var userWizardCoat = userWizard.querySelector('.wizard-coat');
+var coatColorInput = document.querySelector('input[name=coat-color]');
 
-userWizardCoat.addEventListener('click', function () {
-  userWizardCoat.style.fill = generateRandomData(COAT_COLORS);
+var changeColor = function (evt, property, options, field) {
+  var color = generateRandomData(options);
+
+  evt.target.style[property] = color;
+  field.value = color;
+};
+
+userWizardCoat.addEventListener('click', function (evt) {
+  changeColor(evt, 'fill', COAT_COLORS, coatColorInput);
 });
 
 var userWizardEyes = userWizard.querySelector('.wizard-eyes');
+var eyesColorInput = document.querySelector('input[name=eyes-color]');
 
-userWizardEyes.addEventListener('click', function () {
-  userWizardEyes.style.fill = generateRandomData(EYES_COLORS);
+userWizardEyes.addEventListener('click', function (evt) {
+  changeColor(evt, 'fill', EYES_COLORS, eyesColorInput);
 });
 
 var userFireball = document.querySelector('.setup-fireball-wrap');
+var fireballColorInput = document.querySelector('input[name=fireball-color]');
 
-userFireball.addEventListener('click', function () {
-  userFireball.style.backgroundColor = generateRandomData(FIREBALL_COLORS);
+userFireball.addEventListener('click', function (evt) {
+  changeColor(evt, 'backgroundColor', FIREBALL_COLORS, fireballColorInput);
 });
