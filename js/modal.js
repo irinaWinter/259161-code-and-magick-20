@@ -1,45 +1,43 @@
 'use strict';
 
-var setupOpen = document.querySelector('.setup-open');
-var setup = document.querySelector('.setup');
-var setupClose = setup.querySelector('.setup-close');
-var userNameField = setup.querySelector('.setup-user-name');
+(function () {
+  var setup = document.querySelector('.setup');
+  var setupOpen = document.querySelector('.setup-open');
+  var setupClose = setup.querySelector('.setup-close');
 
-var onPopupEscPress = function (evt) {
-  if (evt.key === 'Escape' && userNameField !== document.activeElement) {
-    evt.preventDefault();
-    closePopup();
-  }
-};
+  var onPopupEscPress = function (evt) {
+    window.util.isEscEvent(evt, closePopup);
+  };
 
-var openPopup = function () {
-  setup.classList.remove('hidden');
-
-  document.addEventListener('keydown', onPopupEscPress);
-};
-
-var closePopup = function () {
-  setup.classList.add('hidden');
-
-  document.removeEventListener('keydown', onPopupEscPress);
-};
-
-setupOpen.addEventListener('click', function () {
-  openPopup();
-});
-
-setupOpen.addEventListener('keydown', function (evt) {
-  if (evt.key === 'Enter') {
+  setupOpen.addEventListener('click', function () {
     openPopup();
-  }
-});
+  });
 
-setupClose.addEventListener('click', function () {
-  closePopup();
-});
+  setupOpen.addEventListener('keydown', function (evt) {
+    window.util.isEnterEvent(evt, openPopup);
+  });
 
-setupClose.addEventListener('keydown', function (evt) {
-  if (evt.key === 'Enter') {
+  setupClose.addEventListener('click', function () {
     closePopup();
-  }
-});
+  });
+
+  setupClose.addEventListener('keydown', function (evt) {
+    window.util.isEnterEvent(evt, closePopup);
+  });
+
+  var resetPopupOffset = function () {
+    setup.style.top = '';
+    setup.style.left = '';
+  };
+
+  var openPopup = function () {
+    setup.classList.remove('hidden');
+    document.addEventListener('keydown', onPopupEscPress);
+  };
+
+  var closePopup = function () {
+    setup.classList.add('hidden');
+    resetPopupOffset();
+    document.removeEventListener('keydown', onPopupEscPress);
+  };
+})();
