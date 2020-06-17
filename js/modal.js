@@ -25,6 +25,11 @@
     window.util.isEnterEvent(evt, closePopup);
   });
 
+  var resetPopupOffset = function () {
+    setup.style.top = '';
+    setup.style.left = '';
+  };
+
   var openPopup = function () {
     setup.classList.remove('hidden');
     document.addEventListener('keydown', onPopupEscPress);
@@ -32,6 +37,7 @@
 
   var closePopup = function () {
     setup.classList.add('hidden');
+    resetPopupOffset();
     document.removeEventListener('keydown', onPopupEscPress);
   };
 })();
